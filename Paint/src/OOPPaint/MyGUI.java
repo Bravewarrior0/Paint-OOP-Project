@@ -5,6 +5,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import OOPPaint.Decorator.Color;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -149,9 +151,10 @@ public class MyGUI extends JFrame {
 	};
 
 	public void paint(Graphics g) {
-		//super.paint(g);
+		super.paint(g);
 		int index = listColor.getSelectedIndex();
 		g.setColor(colors[index]);
+		
 		if (fill)
 			g.fillPolygon(new int[] { xbegin, 2 * xbegin - xend, xend }, new int[] { ybegin, yend, yend }, 3);
 		else

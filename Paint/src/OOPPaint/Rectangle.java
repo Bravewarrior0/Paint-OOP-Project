@@ -8,4 +8,11 @@ public class Rectangle implements Shape {
 	public void draw(Graphics g) {
 		
 	}
+	public void resize() {
+		
+	}
+	
+	public boolean isHiden() {
+		return false;
+	}
 }

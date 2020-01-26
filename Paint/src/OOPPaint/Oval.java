@@ -8,4 +8,12 @@ public class Oval implements Shape {
 	public void draw(Graphics g) {
 
 	}
+	
+	public void resize() {
+		System.out.print("OVAL");
+	}
+	
+	public boolean isHiden() {
+		return false;
+	}
 }
