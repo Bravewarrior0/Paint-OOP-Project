@@ -11,6 +11,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MyGUI extends JFrame {
+	private JButton buttonRedo;
+	private JButton buttonUndo;
+	Originator originator = new Originator();
+	CareTaker careTaker = new CareTaker();
+	
+	
 	private boolean fill = false;
 	private JList listShape, listColor;
 	private JCheckBox chckbxFill;
@@ -38,7 +44,7 @@ public class MyGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setSize(1080, 720);
-
+		
 		drawing_panel = new DrawingPanal();
 		drawing_panel.setBackground(Color.WHITE);
 		drawing_panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -59,7 +65,8 @@ public class MyGUI extends JFrame {
 		padding_panal.add(tools_panel);
 		tools_panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tools_panel.setLayout(new FlowLayout(FlowLayout.LEADING, 20, 5));
-
+		
+		
 		listShape = new JList(shapeOptions);
 		listShape.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		listShape.setLayoutOrientation(JList.HORIZONTAL_WRAP);
@@ -86,7 +93,40 @@ public class MyGUI extends JFrame {
 
 		listShape.addListSelectionListener(listShapeHandler);
 		listColor.addListSelectionListener(listColorHandler);
-
+		
+		
+		///// redo & undo Buttons
+		buttonUndo = new JButton("undo");
+		buttonRedo = new JButton("redo");
+		tools_panel.add(buttonUndo);
+		tools_panel.add(buttonRedo);
+		
+		
+		buttonUndo.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	            Memento m = mygui.careTaker.undo(mygui.originator.saveStateToMemento());
+	            if (m !=null) {
+	            	mygui.originator.getState();
+	            	mygui.repaint();
+	            }
+	            	
+	            
+	         }
+	      });
+		buttonRedo.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	            Memento m = mygui.careTaker.redo(mygui.originator.saveStateToMemento());
+	            if (m !=null) {
+	            	mygui.originator.setState(m.getState());
+	            	
+	            	mygui.repaint();
+	            }
+	            	
+	            
+	         }
+	      });
+		
+		
 		setLocationRelativeTo(null);
 
 		chckbxFill.addItemListener(new ItemListener() {
