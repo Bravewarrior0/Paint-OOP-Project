@@ -13,8 +13,7 @@ import java.awt.event.*;
 public class MyGUI extends JFrame {
 	private JButton buttonRedo;
 	private JButton buttonUndo;
-	Originator originator = new Originator();
-	CareTaker careTaker = new CareTaker();
+	
 	
 	
 	private boolean fill = false;
@@ -104,23 +103,14 @@ public class MyGUI extends JFrame {
 		
 		buttonUndo.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
-	            Memento m = mygui.careTaker.undo(mygui.originator.saveStateToMemento());
-	            if (m !=null) {
-	            	mygui.originator.getState();
-	            	mygui.repaint();
-	            }
-	            	
+	            
+	            	drawing_panel.UNDO();
 	            
 	         }
 	      });
 		buttonRedo.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
-	            Memento m = mygui.careTaker.redo(mygui.originator.saveStateToMemento());
-	            if (m !=null) {
-	            	mygui.originator.setState(m.getState());
-	            	
-	            	mygui.repaint();
-	            }
+	        	 drawing_panel.REDO();
 	            	
 	            
 	         }

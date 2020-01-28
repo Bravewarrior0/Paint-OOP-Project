@@ -19,6 +19,8 @@ public class DrawingPanal extends JPanel {
 	private ArrayList<Shape> shapes;
 	private ShapeFactory myFactory = new ShapeFactory();
 	private Shape currentShape;
+	Originator originator = new Originator();
+	CareTaker careTaker = new CareTaker();
 
 	public DrawingPanal() {
 		selectedShapeType = "Line";
@@ -43,6 +45,9 @@ public class DrawingPanal extends JPanel {
 		public void mouseReleased(MouseEvent e) {
 			currentShape.setPoint2(e.getPoint());
 			shapes.add(currentShape);
+			originator.setState(shapes);
+			originator.saveStateToMemento();
+			System.out.print("added");
 			currentShape = null;
 			repaint();
 		}
@@ -79,7 +84,22 @@ public class DrawingPanal extends JPanel {
 		}
 
 	}
-
+	public void UNDO () {
+		Memento m = careTaker.undo(originator.saveStateToMemento());
+        if (m !=null) {
+        originator.getState();
+        System.out.print("NOT");
+        	repaint();
+        }
+	}
+	
+	public void REDO () {
+		Memento m = careTaker.redo(originator.saveStateToMemento());
+        if (m !=null) {
+        	originator.setState(m.getState());
+        	repaint();
+        }
+	}
 //public void paint(Graphics g) {
 //	super.paint(g);
 ////	int colorIndex = listColor.getSelectedIndex();
