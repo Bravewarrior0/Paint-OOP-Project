@@ -1,0 +1,10 @@
+# Compiled source #
+###################
+[...]
+    #       Paint/bin
+[...]
+### Java ###
+# Compiled class file
+*.class
+# Log file
+*.log
