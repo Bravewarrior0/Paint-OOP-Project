@@ -1,5 +1,5 @@
 # Paint(OOP_Project)
-A simple paint project usig Java and swing API to apply oop and design patterns concepts
+A simple paint project using Java and swing API to apply OOP and design patterns concepts
 ## Design patterns covered :
 - Observer
 - Singleton
